@@ -1,18 +1,18 @@
 from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 
 def text_summarize(text):
-    # tokenizer = PegasusTokenizer.from_pretrained("google/pegasus-xsum")
-    # model = PegasusForConditionalGeneration.from_pretrained("google/pegasus-xsum")
+    tokenizer = PegasusTokenizer.from_pretrained("google/pegasus-xsum")
+    model = PegasusForConditionalGeneration.from_pretrained("google/pegasus-xsum")
 
     text = text
 
-    # tokens = tokenizer.tokenize(text, truncation = True, max_length = 500, return_tensors = "pt")
+    tokens = tokenizer(text, truncation = True, max_length = 500, return_tensors = "pt")
 
-    # summary = model.generate(**tokens)
+    summary = model.generate(**tokens)
 
-    # decoded_str = tokenizer.decode(summary[0])
+    decoded_str = tokenizer.decode(summary[0])
 
-    return text
+    return decoded_str
 
 
 from flask import Flask, request, redirect, session
